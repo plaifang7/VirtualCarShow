@@ -38,3 +38,5 @@ cj.cars.create!(
   image: 'https://scontent-waw1-1.cdninstagram.com/vp/c8d01cde65ad0247900e25d83bcddaf4/5BD14962/t51.2885-15/e35/35986760_2039466109715659_4037680106221600768_n.jpg?efg=eyJ1cmxnZW4iOiJ1cmxnZW5fZnJvbV9pZyJ9'
 
 )
+
+puts 'seeds created'
