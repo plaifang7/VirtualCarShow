@@ -1,0 +1,4 @@
+
+Devise.setup do |config|
+  config.secret_key = ENV['f9b2c59d772300a99ba60d77baddd24f98d344e4cc022ba704fb03b1e4062907baceb3eb0f1ca51f494f601197b66f222c154a211f097bbd8a740d6309c0ba8a']
+end
