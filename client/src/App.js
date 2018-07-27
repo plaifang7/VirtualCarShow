@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
+import { Route, Link, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
 import SignUpLogIn from './components/SignUpLogIn'
 import axios from 'axios'
 import './App.css';
@@ -49,6 +49,10 @@ class App extends Component {
     return (
       <Router>
         <div>
+          <div>
+            <Link to="/signUp">Login</Link>
+            <Link to="/signUp">Sign Up</Link>
+          </div>
           <Switch>
             <Route exact path="/signUp" render={SignUpLogInComponent} />
           </Switch>
