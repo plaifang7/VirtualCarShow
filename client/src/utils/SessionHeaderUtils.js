@@ -29,7 +29,7 @@ axios.defaults.headers.uid = localStorage.getItem('uid')
 axios.defaults.headers.expiry = localStorage.getItem('expiry')
 }
 
-export function clearAuthToken() {
+export function clearAuthTokens() {
   localStorage.removeItem('access-token')
   localStorage.removeItem('client')
   localStorage.removeItem('uid')

@@ -53,8 +53,8 @@ class App extends Component {
         email,
         password
       }
-      await axios.post('/auth/sign_in', payload)
-      saveAuthTokens(response.headers)
+      const res = await axios.post('/auth/sign_in', payload)
+      saveAuthTokens(res.headers)
 
       const cars = await this.getCars()
 
@@ -66,6 +66,15 @@ class App extends Component {
     } catch (error) {
       console.log(error)
     }
+  }
+
+  signOut = async(event) => {
+    event.preventDefault()
+
+    await axios.delete('auth/sign_out')
+    clearAuthTokens()
+
+    this.setState({signedIn: false})
   }
 
 
@@ -90,6 +99,7 @@ class App extends Component {
             <Link to ="/">VCS</Link>
             <Link to="/signUp">Login</Link>
             <Link to="/signUp">Sign Up</Link>
+            <button onClick={this.signOut}>Sign Out</button>
           </div>
           <Switch>
             <Route exact path="/signUp" render={SignUpLogInComponent} />
