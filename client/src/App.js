@@ -6,7 +6,17 @@ import './App.css';
 
 class App extends Component {
   state = {
-    signedIn: false
+    signedIn: false,
+    cars: []
+  }
+
+  async componentDidMount () {
+    
+  }
+
+  getCars = async () => {
+    const res = await axios.get('/cars')
+    return res.data
   }
 
   signUp = async (email, password, password_confirmation) => {
