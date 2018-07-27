@@ -7,7 +7,6 @@ const CarsList= (props) => {
     return (
       <Car
       {...car}
-      deleteCar={props.deleteCar}
       key={car.id}
       />
     )
