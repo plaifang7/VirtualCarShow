@@ -50,6 +50,7 @@ class App extends Component {
       <Router>
         <div>
           <div>
+            <Link to ="/">VCS</Link>
             <Link to="/signUp">Login</Link>
             <Link to="/signUp">Sign Up</Link>
           </div>
