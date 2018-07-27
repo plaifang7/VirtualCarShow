@@ -69,7 +69,7 @@ class App extends Component {
     }
   }
 
-  signOut = async(event) => {
+  signOut = async (event) => {
     event.preventDefault()
 
     await axios.delete('auth/sign_out')
@@ -78,6 +78,11 @@ class App extends Component {
     this.setState({signedIn: false})
   }
 
+    deleteCar = async (id) => {
+      await axios.delete(`/cars/${id}`)
+      const cars = await this.getCars()
+      this.setState({ cars })
+    }
 
   render() {
     const SignUpLogInComponent = () => (
@@ -89,6 +94,7 @@ class App extends Component {
     const CarslistComponent = () => (
       <CarsList 
       cars={this.state.cars}
+      deleteCar={this.deleteCar}
       />
     )
       

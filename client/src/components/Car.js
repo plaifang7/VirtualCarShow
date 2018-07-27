@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 
-class Car extends Component {
-  render() {
-    return (
+const Car = (props) => {
+  return (
+    <div>
+      <img src={props.image} alt={props.model} width ="400"/>
       <div>
-        This is an individual Car
+        <p>{props.year} {props.make} {props.model}</p>
+        <p>Color: {props.color}</p>
+        <p>Rating: {props.rating}</p>
       </div>
-    );
-  }
+    </div>
+  )
 }
 
 export default Car;

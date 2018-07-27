@@ -25,7 +25,7 @@ corey_barret.cars.create!(
   model: 'Challenger Hellcat',
   year: '2016',
   color: 'perriwinkle',
-  rating: 4.1,
+  rating: 4,
   image: 'https://scontent-atl3-1.xx.fbcdn.net/v/t1.0-9/31689311_357066891454713_3866109983951159296_n.jpg?_nc_cat=0&oh=ce906e96290cbbed9c9b70680da2f9d2&oe=5C111B1A'
 )
 
