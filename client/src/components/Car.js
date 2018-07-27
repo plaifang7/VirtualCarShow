@@ -8,6 +8,7 @@ const Car = (props) => {
         <p>{props.year} {props.make} {props.model}</p>
         <p>Color: {props.color}</p>
         <p>Rating: {props.rating}</p>
+        <button>View Car Profile</button>
       </div>
     </div>
   )
