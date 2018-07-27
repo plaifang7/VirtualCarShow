@@ -1,5 +1,6 @@
 class CarsController < ApplicationController
   before_action :authenticate_user!
+  load_and_authorize_resource  only: [:destroy]
 
 def index
 @cars = Car.all
@@ -35,7 +36,7 @@ end
 private
 
 def car_params
-params.require(:cars).permit(:make, :model, :year, :color, :rating, :image)
+params.require(:car).permit(:make, :model, :year, :color, :rating, :image)
 end
 
 
