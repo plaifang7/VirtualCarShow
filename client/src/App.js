@@ -5,6 +5,7 @@ import SignUpLogIn from './components/SignUpLogIn'
 import { saveAuthTokens, userIsLoggedIn, setAxiosDefaults, clearAuthTokens } from './utils/SessionHeaderUtils'
 import CarsList from './components/CarsList';
 import './App.css';
+import HomePage from './components/HomePage';
 
 
 class App extends Component {
@@ -102,8 +103,9 @@ class App extends Component {
             <button onClick={this.signOut}>Sign Out</button>
           </div>
           <Switch>
+            <Route exact path="/" component={HomePage} />
             <Route exact path="/signUp" render={SignUpLogInComponent} />
-            <Route exact pathe="/cars" render={CarslistComponent} />
+            <Route exact path="/cars" render={CarslistComponent} />
           </Switch>
 
           {this.state.signedIn ? 
