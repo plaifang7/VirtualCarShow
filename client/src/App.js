@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import axios from 'axios'
 import { Route, Link, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
 import SignUpLogIn from './components/SignUpLogIn'
-import axios from 'axios'
+import { saveAuthTokens, userIsLoggedIn, setAxiosDefaults, clearAuthTokens } from './utils/SessionHeaderUtils'
+import CarsList from './components/CarsList';
 import './App.css';
+
 
 class App extends Component {
   state = {
@@ -11,7 +14,14 @@ class App extends Component {
   }
 
   async componentDidMount () {
-    
+    const signedIn = userIsLoggedIn()
+    let cars = []
+
+    if (signedIn) {
+      setAxiosDefaults()
+      cars = await this.getCars()
+    }
+    this.setState({ cars, signedIn })
   }
 
   getCars = async () => {
@@ -28,7 +38,9 @@ class App extends Component {
       }
       await axios.post('/auth', payload)
 
-      this.setState({ signedIn: true })
+      this.setState({ 
+        signedIn: true 
+      })
 
     } catch (error) {
       console.log(error)
@@ -42,19 +54,34 @@ class App extends Component {
         password
       }
       await axios.post('/auth/sign_in', payload)
+      saveAuthTokens(response.headers)
 
-      this.setState({ signedIn: true })
+      const cars = await this.getCars()
+
+      this.setState({ 
+        cars, 
+        signedIn: true 
+      })
 
     } catch (error) {
       console.log(error)
     }
   }
+
+
   render() {
     const SignUpLogInComponent = () => (
       <SignUpLogIn
         signUp={this.signUp}
         signIn={this.signIn} />
     )
+
+    const CarslistComponent = () => (
+      <CarsList 
+      cars={this.state.cars}
+      />
+    )
+      
 
     return (
       <Router>
@@ -66,9 +93,12 @@ class App extends Component {
           </div>
           <Switch>
             <Route exact path="/signUp" render={SignUpLogInComponent} />
+            <Route exact pathe="/cars" render={CarslistComponent} />
           </Switch>
 
-          {this.state.signedIn ? null : <Redirect to="/signUp" />}
+          {this.state.signedIn ? 
+            <Redirect to="/cars" /> : 
+            <Redirect to="/signUp" />}
         </div>
       </Router>
     );
