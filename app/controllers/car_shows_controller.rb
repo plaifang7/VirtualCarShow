@@ -1,0 +1,38 @@
+class CarShowsController < ApplicationController
+  before_action :authenticate_user!
+  load_and_authorize_resource  only: [:destroy]
+
+  def index
+    @carshows = CarShow.all
+    render json: @carshows
+  end
+
+  def show
+    @carshow = CarShow.find(params[:id])
+    render json: @carshow
+  end
+
+  def create 
+    @user = current_user
+    @car = Car.find(params[:id])
+    @carshow = @car.car_shows.create!(carshow_params)
+    render json: @carshow
+
+  end 
+
+  def destroy
+    @user = current_user
+    @carshow = CarShow.find(params[:id])
+    @carshow.destroy!
+
+    render status: :ok
+
+  end
+
+  private
+
+  def carshow_params
+    params.require(:car_show).permit(:location, :city_state, :date, car_id)
+
+  end
+end
