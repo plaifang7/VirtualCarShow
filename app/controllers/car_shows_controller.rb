@@ -3,7 +3,8 @@ class CarShowsController < ApplicationController
   load_and_authorize_resource  only: [:destroy]
 
   def index
-    @carshows = CarShow.all
+    @car = Car.find(params[:car_id])
+    @carshows = @car.car_shows.all
     render json: @carshows
   end
 
@@ -14,7 +15,7 @@ class CarShowsController < ApplicationController
 
   def create 
     @user = current_user
-    @car = Car.find(params[:id])
+    @car = Car.find(params[:car_id])
     @carshow = @car.car_shows.create!(carshow_params)
     render json: @carshow
 
@@ -32,7 +33,7 @@ class CarShowsController < ApplicationController
   private
 
   def carshow_params
-    params.require(:car_show).permit(:location, :city_state, :date, car_id)
+    params.require(:car_show).permit(:location, :city_state, :date).merge(car_id: params[:car_id])
 
   end
 end

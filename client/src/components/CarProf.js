@@ -13,21 +13,22 @@ class CarProf extends Component {
     let car_shows =[]
 
     car = await this.showCar()
+    car_shows = await this.showCarShows()
     this.setState({
       car, 
       car_shows})
   }
 
   showCar = async () => {
-    const carId = this.props.match.params.id
+  const carId = this.props.match.params.id
    const res = await axios.get(`/cars/${carId}`)
    return res.data 
    
   }
-  getCarShows = async (showId) => {
-    const carId = this.props.match.params.id
-    const res = await axios.get(``)
-
+  showCarShows = async () => {
+    const carId =this.props.match.params.id
+    const res = await axios.get(`/cars/${carId}/car_shows`)
+    return res.data
   }
 
   render() {
