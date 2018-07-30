@@ -37,9 +37,22 @@ class CarProf extends Component {
         <div>
        <h1>{this.state.car.year} {this.state.car.model}</h1>
        <img src={this.state.car.image} alt={this.state.car.model} width ="400" />
+       
        </div>
        <div>
-         Car Shows
+         {this.state.car_shows.map((carshow) => {
+           return (
+             <div>
+               <h3>{carshow.location}</h3>
+               <p>{carshow.city_state}</p>
+               <p>{carshow.date}</p>
+              <button>Delete Show</button>
+             </div>
+           )
+         })}
+       </div>
+       <div>
+         <button>Add Show</button>
        </div>
       </div>
     );
