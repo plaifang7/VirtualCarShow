@@ -40,7 +40,15 @@ bumblebee = cj.cars.create!(
 )
 
 bumblebee.car_shows.create!(
-  
+  location: 'Georgia World Congress Center',
+  city_state: 'Atlanta, Ga',
+  date: '07/31/2018'
+)
+
+hellkeazy.car_shows.create!(
+  location: 'Georgia World Congress Center',
+  city_state: 'Atlanta, Ga',
+  date: '07/31/2018'
 )
 
 puts 'seeds created'
