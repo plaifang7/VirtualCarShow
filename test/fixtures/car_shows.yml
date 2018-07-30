@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  location: MyString
   city_state: MyString
   date: MyString
   car: one
 
 two:
+  location: MyString
   city_state: MyString
   date: MyString
   car: two

@@ -20,7 +20,7 @@ cj = User.create!(
 )
 
 
-corey_barret.cars.create!(
+hellkeazy = corey_barret.cars.create!(
   make: 'Dodge',
   model: 'Challenger Hellcat',
   year: '2016',
@@ -29,7 +29,7 @@ corey_barret.cars.create!(
   image: 'https://scontent-atl3-1.xx.fbcdn.net/v/t1.0-9/31689311_357066891454713_3866109983951159296_n.jpg?_nc_cat=0&oh=ce906e96290cbbed9c9b70680da2f9d2&oe=5C111B1A'
 )
 
-cj.cars.create!(
+bumblebee = cj.cars.create!(
   make: 'Cheverolet',
   model: 'Camaro SS',
   year: '2017',
@@ -37,6 +37,10 @@ cj.cars.create!(
   rating: 4,
   image: 'https://scontent-waw1-1.cdninstagram.com/vp/c8d01cde65ad0247900e25d83bcddaf4/5BD14962/t51.2885-15/e35/35986760_2039466109715659_4037680106221600768_n.jpg?efg=eyJ1cmxnZW4iOiJ1cmxnZW5fZnJvbV9pZyJ9'
 
+)
+
+bumblebee.car_shows.create!(
+  
 )
 
 puts 'seeds created'

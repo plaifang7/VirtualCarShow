@@ -1,6 +1,7 @@
-class CreateLocations < ActiveRecord::Migration[5.2]
+class CreateCarShows < ActiveRecord::Migration[5.2]
   def change
-    create_table :locations do |t|
+    create_table :car_shows do |t|
+      t.string :location
       t.string :city_state
       t.string :date
       t.references :car, foreign_key: true
