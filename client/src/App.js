@@ -4,6 +4,7 @@ import { Route, Link, BrowserRouter as Router, Switch, Redirect } from 'react-ro
 import SignUpLogIn from './components/SignUpLogIn'
 import { saveAuthTokens, userIsLoggedIn, setAxiosDefaults, clearAuthTokens } from './utils/SessionHeaderUtils'
 import CarsList from './components/CarsList';
+import CarProf from './components/CarProf'
 import './App.css';
 import HomePage from './components/HomePage';
 
@@ -112,6 +113,7 @@ class App extends Component {
             <Route exact path="/" component={HomePage} />
             <Route exact path="/signUp" render={SignUpLogInComponent} />
             <Route exact path="/cars" render={CarslistComponent} />
+            <Route exact path="/cars/:id" component={CarProf} />
           </Switch>
 
           {this.state.signedIn ? 
