@@ -31,9 +31,9 @@ class CarProf extends Component {
     return res.data
   }
 
-  deleteShow = async (showId) => {
+  deleteShow = async (id) => {
     const carId =this.props.match.params.id
-    await axios.delete(`/cars/${carId}/car_shows/${showId}`)
+    await axios.delete(`/cars/${carId}/car_shows/${id}`)
     const car_shows = this.showCarShows
     this.setState({car_shows})
 
