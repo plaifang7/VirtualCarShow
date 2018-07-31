@@ -17,11 +17,21 @@ margin-top: 100px;
 const IntroWrap = styled.div`
 padding-top: 200px;
 text-align: center;
+
+
 h1{
-  text-shadow: 2px 2px black;
+  text-shadow:
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
 }
 h4{
-  text-shadow: 2px 2px black;
+  text-shadow:
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
 }
 
 

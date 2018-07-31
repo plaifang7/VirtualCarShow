@@ -7,9 +7,14 @@ const LoginWrap = styled.div `
 width: 50vw;
 background-color: red;
 margin-top: 50px;
+height: 100%;
 
 Form.Field {
   width: 70px;
+}
+
+.signIn{
+
 }
 
 
@@ -50,7 +55,7 @@ class SignUpLogIn extends Component {
         return (
           <center>
             <LoginWrap>
-                <Form>
+                <Form className="signIn">
                     <Form.Field>
                         <label htmlFor="email">E-mail: </label>
                         <input onChange={this.handleChange} type="text" name="email" value={this.state.email}/>
