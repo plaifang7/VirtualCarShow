@@ -31,6 +31,15 @@ class CarProf extends Component {
     return res.data
   }
 
+  deleteShow = async (showId) => {
+    const carId =this.props.match.params.id
+    await axios.delete(`/cars/${carId}/car_shows/${showId}`)
+    const car_shows = this.showCarShows
+    this.setState({car_shows})
+
+
+  }
+
   render() {
     return (
       <div>
@@ -39,7 +48,16 @@ class CarProf extends Component {
        <img src={this.state.car.image} alt={this.state.car.model} width ="400" />
        </div>
        <div>
-         Car Shows
+       {this.state.car_shows.map((carshow) => {
+           return (
+             <div>
+               <h3>{carshow.location}</h3>
+               <p>{carshow.city_state}</p>
+               <p>{carshow.date}</p>
+              <button onClick={() => this.deleteShow(carshow.id)}>Delete Show</button>
+             </div>
+           )
+         })}
        </div>
       </div>
     );
