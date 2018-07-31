@@ -1,12 +1,36 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import axios from 'axios'
+import styled from 'styled-components'
 import { Route, Link, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
 import SignUpLogIn from './components/SignUpLogIn'
 import { saveAuthTokens, userIsLoggedIn, setAxiosDefaults, clearAuthTokens } from './utils/SessionHeaderUtils'
-import CarsList from './components/CarsList';
+import CarsList from './components/CarsList'
 import CarProf from './components/CarProf'
-import './App.css';
-import HomePage from './components/HomePage';
+import { Menu, Button } from 'semantic-ui-react'
+import HomePage from './components/HomePage'
+
+const AppWrap = styled.div`
+width: 100vw;
+height: 100vh;
+background-color: black;
+`
+
+const NavBar = styled.div`
+a {
+  color: yellow;
+}
+.nav{
+  background-color: red;
+}
+.signOut{
+  background-color: black;
+  color: yellow;
+}
+.signOut:hover{
+  cursor: pointer;
+  background-color: yellow;
+}
+`
 
 
 class App extends Component {
@@ -15,7 +39,7 @@ class App extends Component {
     cars: []
   }
 
-  async componentDidMount () {
+  async componentDidMount() {
     const signedIn = userIsLoggedIn()
     let cars = []
 
@@ -40,8 +64,8 @@ class App extends Component {
       }
       await axios.post('/auth', payload)
 
-      this.setState({ 
-        signedIn: true 
+      this.setState({
+        signedIn: true
       })
 
     } catch (error) {
@@ -60,9 +84,9 @@ class App extends Component {
 
       const cars = await this.getCars()
 
-      this.setState({ 
-        cars, 
-        signedIn: true 
+      this.setState({
+        cars,
+        signedIn: true
       })
 
     } catch (error) {
@@ -76,14 +100,14 @@ class App extends Component {
     await axios.delete('auth/sign_out')
     clearAuthTokens()
 
-    this.setState({signedIn: false})
+    this.setState({ signedIn: false })
   }
 
-    deleteCar = async (id) => {
-      await axios.delete(`/cars/${id}`)
-      const cars = await this.getCars()
-      this.setState({ cars })
-    }
+  deleteCar = async (id) => {
+    await axios.delete(`/cars/${id}`)
+    const cars = await this.getCars()
+    this.setState({ cars })
+  }
 
   render() {
     const SignUpLogInComponent = () => (
@@ -93,22 +117,32 @@ class App extends Component {
     )
 
     const CarslistComponent = () => (
-      <CarsList 
-      cars={this.state.cars}
-      deleteCar={this.deleteCar}
+      <CarsList
+        cars={this.state.cars}
+        deleteCar={this.deleteCar}
       />
     )
-      
+
 
     return (
       <Router>
-        <div>
-          <div>
-            <Link to ="/">VCS</Link>
+        <AppWrap>
+          <NavBar>
+          <Menu stackable className="nav">
+            <Menu.Item>
+              <Link to="/">VCS</Link>
+              </Menu.Item>
+            <Menu.Item>
             <Link to="/signUp">Login</Link>
+            </Menu.Item>
+            <Menu.Item>
             <Link to="/signUp">Sign Up</Link>
-            <button onClick={this.signOut}>Sign Out</button>
-          </div>
+            </Menu.Item>
+            <Menu.Item>
+            <Button className="signOut" onClick={this.signOut}>Sign Out</Button>
+            </Menu.Item>
+          </Menu>
+          </NavBar>
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/signUp" render={SignUpLogInComponent} />
@@ -116,10 +150,10 @@ class App extends Component {
             <Route exact path="/cars/:id" component={CarProf} />
           </Switch>
 
-          {this.state.signedIn ? 
-            <Redirect to="/cars" /> : 
-            <Redirect to="/signUp" />}
-        </div>
+          {this.state.signedIn ?
+            <Redirect to="/cars" /> :
+            <Redirect to="/" />}
+        </AppWrap>
       </Router>
     );
   }
