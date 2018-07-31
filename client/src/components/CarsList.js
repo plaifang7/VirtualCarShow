@@ -1,5 +1,17 @@
 import React from 'react';
 import Car from './Car'
+import styled from 'styled-components'
+
+
+const CardWrap = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+align-content: center;
+width: 100vw;
+
+
+`
 
 const CarsList= (props) => {
 
@@ -13,10 +25,10 @@ const CarsList= (props) => {
   })
 
   return (
-    <div>
+    <CardWrap>
       <h1>Cars</h1>
         {cars}
-    </div>
+    </CardWrap>
   )
 }
 

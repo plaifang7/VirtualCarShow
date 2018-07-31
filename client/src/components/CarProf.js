@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import { Card, Button, Image } from 'semantic-ui-react'
 
 class CarProf extends Component {
   state = {
@@ -43,19 +44,21 @@ class CarProf extends Component {
   render() {
     return (
       <div>
-        <div>
+        <Card>
        <h1>{this.state.car.year} {this.state.car.model}</h1>
-       <img src={this.state.car.image} alt={this.state.car.model} width ="400" />
-       </div>
+       <Image src={this.state.car.image} alt={this.state.car.model} width ="400" />
+       </Card>
        <div>
        {this.state.car_shows.map((carshow) => {
            return (
-             <div>
+             <Card>
+               <Card.Content>
                <h3>{carshow.location}</h3>
                <p>{carshow.city_state}</p>
                <p>{carshow.date}</p>
-              <button onClick={() => this.deleteShow(carshow.id)}>Delete Show</button>
-             </div>
+              <Button onClick={() => this.deleteShow(carshow.id)}>Delete Show</Button>
+              </Card.Content>
+             </Card>
            )
          })}
        </div>

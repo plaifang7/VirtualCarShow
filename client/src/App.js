@@ -11,7 +11,7 @@ import HomePage from './components/HomePage'
 
 const AppWrap = styled.div`
 width: 100vw;
-height: 100vh;
+height: 100%;
 background-color: black;
 `
 
