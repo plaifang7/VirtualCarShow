@@ -1,6 +1,5 @@
 
 import React, {Component} from 'react'
-import { Link } from 'react-router-dom'
 
 class SignUpLogIn extends Component {
 
@@ -54,7 +53,6 @@ class SignUpLogIn extends Component {
                     <button onClick={this.signUp}>Sign Up</button>
                     <button onClick={this.signIn}>Log In</button>
                 </form>
-                <Link to="/cars">Guest? Just want to see cars? Click here</Link>
             </div>
         )
     }
