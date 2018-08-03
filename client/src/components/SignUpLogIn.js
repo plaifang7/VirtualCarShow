@@ -6,11 +6,11 @@ import styled from 'styled-components'
 const LoginWrap = styled.div `
 width: 50vw;
 background-color: red;
-margin-top: 50px;
+margin-top: 100px;
 height: 100%;
 
-Form.Field {
-  width: 70px;
+.loginField{
+  width: 45%;
 }
 
 .signIn{
@@ -55,16 +55,17 @@ class SignUpLogIn extends Component {
         return (
           <center>
             <LoginWrap>
+              <h1>Sign In or Sign Up Here!</h1>
                 <Form className="signIn">
-                    <Form.Field>
+                    <Form.Field className="loginField">
                         <label htmlFor="email">E-mail: </label>
                         <input onChange={this.handleChange} type="text" name="email" value={this.state.email}/>
                     </Form.Field>
-                    <Form.Field>
+                    <Form.Field className="loginField">
                         <label htmlFor="password">Password: </label>
                         <input onChange={this.handleChange} type="password" name="password" value={this.state.password}/>
                     </Form.Field>
-                    <Form.Field>
+                    <Form.Field className="loginField">
                         <label htmlFor="password_confirmation">Confirm Password: </label>
                         <input onChange={this.handleChange} type="password" name="password_confirmation"
                                value={this.state.password_confirmation}/>
