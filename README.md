@@ -23,7 +23,7 @@ This is my capstone project for the Web Development Immersive course at GA. I de
 
 ### Back-End
 * Ruby on Rails
-* Postgresql
+* Postgres SQL
 
 
 Thank you for taking a glance at my project! I hope you enjoyed your experience. If you did, feel free to leave a star and follow me on github.

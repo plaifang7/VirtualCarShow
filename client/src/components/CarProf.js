@@ -44,6 +44,8 @@ class CarProf extends Component {
 
   deleteCar = async (id) => {
     await axios.delete(`/cars/${id}`)
+    const cars = await this.getCars()
+    this.setState({ cars })
   }
 
   render() {
