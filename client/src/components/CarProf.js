@@ -41,13 +41,20 @@ class CarProf extends Component {
 
   }
 
+
+  deleteCar = async (id) => {
+    await axios.delete(`/cars/${id}`)
+  }
+
   render() {
     return (
       <div>
         <Card>
        <h1>{this.state.car.year} {this.state.car.model}</h1>
        <Image src={this.state.car.image} alt={this.state.car.model} width ="400" />
+       <Button onClick={() => this.deleteCar(this.state.car.id)}>Delete Car</Button>
        </Card>
+       
        <div>
        {this.state.car_shows.map((carshow) => {
            return (
