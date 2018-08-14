@@ -8,6 +8,14 @@ class Ability
   can [:destroy], Car do |car|
     car.user == user
   end
+
+  can [:create], Car do |car|
+    car.user == user
+  end
+  
+  can [:update], Car do |car|
+    car.user == user
+  end
  
 end
 def initialize(car)
@@ -15,6 +23,10 @@ def initialize(car)
   can :read, CarShow
   
   can [:destroy], CarShow do |carshow|
+    carshow.car == user
+  end
+
+  can [:create], CarShow do |carshow|
     carshow.car == user
   end
 end

@@ -1,6 +1,5 @@
 class CarShowsController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource  only: [:destroy]
 
   def index
     @car = Car.find(params[:car_id])

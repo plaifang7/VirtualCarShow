@@ -3,6 +3,10 @@ import Car from './Car'
 import {Button} from 'semantic-ui-react'
 import styled from 'styled-components'
 
+const BodyWrap = styled.div`
+height: 100vh;
+`
+
 const CarTitle= styled.h1`
 color: red;
 `
@@ -29,7 +33,7 @@ const CarsList= (props) => {
   })
 
   return (
-    <div>
+    <BodyWrap>
     <center>
       <CarTitle>Cars</CarTitle>
     <CardWrap>
@@ -40,7 +44,7 @@ const CarsList= (props) => {
     <center>
       <Button>Add Car</Button>
     </center>
-    </div>
+    </BodyWrap>
   )
 }
 
