@@ -14,6 +14,7 @@ color: red;
 const CardWrap = styled.div`
 display: flex;
 flex-direction: row;
+flex-wrap: wrap;
 justify-content: space-around;
 align-content: center;
 width: 100vw;

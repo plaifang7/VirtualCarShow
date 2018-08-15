@@ -6,7 +6,7 @@ import SignUpLogIn from './components/SignUpLogIn'
 import { saveAuthTokens, userIsLoggedIn, setAxiosDefaults, clearAuthTokens } from './utils/SessionHeaderUtils'
 import CarsList from './components/CarsList'
 import CarProf from './components/CarProf'
-import { Menu, Button } from 'semantic-ui-react'
+import { Menu, Button, Icon } from 'semantic-ui-react'
 import HomePage from './components/HomePage'
 
 const AppWrap = styled.div`
@@ -26,6 +26,7 @@ a {
 .signOut{
   background-color: black;
   color: yellow;
+  margin: 0 auto;
 }
 .signOut:hover{
   cursor: pointer;
@@ -37,8 +38,11 @@ a {
 class App extends Component {
   state = {
     signedIn: false,
-    cars: []
+    cars: [],
+    activeItem: 'home'
   }
+
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   async componentDidMount() {
     const signedIn = userIsLoggedIn()
@@ -111,6 +115,8 @@ class App extends Component {
   }
 
   render() {
+    const { activeItem } = this.state
+
     const SignUpLogInComponent = () => (
       <SignUpLogIn
         signUp={this.signUp}
@@ -129,20 +135,34 @@ class App extends Component {
       <Router>
         <AppWrap>
           <NavBar>
-          <Menu stackable className="nav">
-            <Menu.Item>
-              <Link to="/">VCS</Link>
+            <Menu stackable icon='labeled' className="nav">
+              <Menu.Item name='home' active={activeItem === 'home'}  onClick={this.handleItemClick}>
+              <Link to="/">
+              <Icon name='home'/>
+              <br/>
+              VCS
+              </Link>
               </Menu.Item>
-            <Menu.Item>
-            <Link to="/signUp">Login</Link>
-            </Menu.Item>
-            <Menu.Item>
-            <Link to="/signUp">Sign Up</Link>
-            </Menu.Item>
-            <Menu.Item>
-            <Button className="signOut" onClick={this.signOut}>Sign Out</Button>
-            </Menu.Item>
-          </Menu>
+              <Menu.Item name='car' active={activeItem === 'car'}  onClick={this.handleItemClick}>
+              <Link to="/cars"> 
+              <Icon name='car'/>
+              <br/>
+                Cars
+                </Link>
+              </Menu.Item>
+              <Menu.Menu position='right'>
+              <Menu.Item name='login' active={activeItem === 'login'}  onClick={this.handleItemClick}>
+                <Link to="/signUp">
+                <Icon name='sign in'/>
+                <br/>
+                Login/ Sign Up
+                </Link>
+              </Menu.Item>
+              <Menu.Item>
+                <Button className="signOut" onClick={this.signOut}>Sign Out</Button>
+              </Menu.Item>
+              </Menu.Menu>
+            </Menu>
           </NavBar>
           <Switch>
             <Route exact path="/" component={HomePage} />
