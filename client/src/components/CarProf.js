@@ -7,11 +7,20 @@ const CarProfWrap = styled.div`
 height: 100vh;
 `
 
+const AddCarShowForm = styled.div`
+width: 50vh;
+background-color: red;
+.loginField{
+  width: 45%;
+}
+
+`
+
 class CarProf extends Component {
   state = {
     car: {},
-    carshows: [],
-    newShow: true,
+    carshow: [],
+    newShow: false,
     location: '',
     city_state: '',
     date: ''
@@ -20,13 +29,13 @@ class CarProf extends Component {
 
   async componentDidMount() {
     let car = {}
-    let carshows = []
+    let carshow = []
 
     car = await this.showCar()
-    carshows = await this.showCarShows()
+    carshow = await this.showCarShows()
     this.setState({
       car,
-      carshows
+      carshow
     })
   }
 
@@ -47,17 +56,29 @@ class CarProf extends Component {
     this.setState({ newShow: newCarShow })
   }
 
-  addShow = async (id) => {
-    const carId = this.props.match.params.id
-    await axios.post(`/cars/${carId}/car_shows/${id}`)
-    this.setState({ carshows })
+  handleChange = (event) => {
+    const inputName = event.target.name
+    const userInput = event.target.value
+    this.setState({
+      [inputName]: userInput
+    })
   }
 
+  handleSubmit = (event) => {
+    event.preventDefault()
+    const carId = this.props.match.params.id
+    axios.post(`/cars/${carId}/car_shows`, this.state)
+      .then(res => {
+        window.location.reload()
+      })
+
+
+  }
   deleteShow = async (id) => {
     const carId = this.props.match.params.id
     await axios.delete(`/cars/${carId}/car_shows/${id}`)
-    const carshows = this.showCarShows
-    this.setState({ carshows })
+    const carshow = this.showCarShows
+    this.setState({ carshow })
 
 
   }
@@ -78,9 +99,9 @@ class CarProf extends Component {
           <Button onClick={() => this.deleteCar(this.state.car.id)}>Delete Car</Button>
         </Card>
 
-        <div>
+      
 
-          {this.state.carshows.map((carshow) => {
+          {this.state.carshow.map((carshow) => {
             return (
               <Card>
                 <Card.Content>
@@ -92,31 +113,48 @@ class CarProf extends Component {
               </Card>
             )
           })}
-          <Button onClick={this.toggleNewShow}>
-            {this.state.newShow ? "Cancel" : "Add Car Show"}
-          </Button>
-          {this.state.newShow ?
-            <div>
-              <Form>
-                <Form.Field>
-                  <label htmlFor="location">Location Name: </label>
-                  <input onChange={this.handleChange} type="text" name="location" value={this.state.location} />
-                </Form.Field>
-                <Form.Field>
-                  <label htmlFor="city_state">City,State: </label>
-                  <input onChange={this.handleChange} type="text" name="city_state" value={this.state.city_state} />
-                </Form.Field>
-                <Form.Field>
-                  <label htmlFor="date">Date: </label>
-                  <input onChange={this.handleChange} type="text" name="date" value={this.state.date} />
-                </Form.Field>
-                <center>
-                  <Button onClick={this.addShow}>Add Show</Button>
-                </center>
-              </Form>
-            </div>
-            : null}
-        </div>
+          <div>
+            <center>
+              <Button onClick={this.toggleNewShow}>
+                {this.state.newShow ? "Cancel" : "Add Car Show"}
+              </Button>
+              <br />
+              {this.state.newShow ?
+                <AddCarShowForm>
+                  <Form onSubmit={this.handleSubmit}>
+                    <Form.Field className="loginField">
+                      <label htmlFor="location">Location Name: </label>
+                      <input
+                        onChange={this.handleChange}
+                        type="text"
+                        name="location"
+                        value={this.state.location} />
+                    </Form.Field>
+                    <Form.Field className="loginField">
+                      <label htmlFor="city_state">City,State: </label>
+                      <input
+                        onChange={this.handleChange}
+                        type="text"
+                        name="city_state"
+                        value={this.state.city_state} />
+                    </Form.Field>
+                    <Form.Field className="loginField">
+                      <label htmlFor="date">Date: </label>
+                      <input
+                        onChange={this.handleChange}
+                        type="date"
+                        name="date"
+                        value={this.state.date} />
+                    </Form.Field>
+                    <center>
+                      <Button type="submit">Add Show</Button>
+                    </center>
+                  </Form>
+                </AddCarShowForm>
+                : null}
+            </center>
+          </div>
+        
       </CarProfWrap>
     );
   }
